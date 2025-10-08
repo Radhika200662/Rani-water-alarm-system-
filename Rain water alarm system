@@ -1,0 +1,29 @@
+
+// Rain Water Alarm System
+int rainSensor = 2;   // Digital pin for rain sensor output
+int buzzer = 3;       // Buzzer pin
+int led = 4;          // LED pin (optional)
+
+void setup() {
+  pinMode(rainSensor, INPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(led, OUTPUT);
+  Serial.begin(9600);
+  Serial.println("Rain Water Alarm System Started");
+}
+
+void loop() {
+  int rainDetected = digitalRead(rainSensor);
+
+  if (rainDetected == LOW) { // LOW means rain detected (depends on sensor type)
+    digitalWrite(buzzer, HIGH);
+    digitalWrite(led, HIGH);
+    Serial.println("Rain Detected!");
+  } else {
+    digitalWrite(buzzer, LOW);
+    digitalWrite(led, LOW);
+    Serial.println("No Rain.");
+  }
+
+  delay(500); // Small delay to stabilize readings
+}
